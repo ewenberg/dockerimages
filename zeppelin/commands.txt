@@ -1,0 +1,26 @@
+# to build zeppelin
+mvn clean package -Ppyspark -Dhadoop.version=2.6.0-cdh5.7.0 \
+  -Pspark-1.6.0-cdh5.7.0 -Phadoop-2.6 -Pvendor-repo -Pyarn -DskipTests
+
+# to build docker image
+docker build . -t centos6:zeppelin
+
+# to run docker container
+docker run -it -P -v /Users/erikwenberg/prog/zeppelin/share:/opt/share \
+  -v /Users/erikwenberg/prog/work-maven-repo:/opt/m2 centos6:zeppelin
+
+
+#  Add this profile to spark-dependencies and spark pom:
+
+  <profile>
+    <id>spark-1.6.0-cdh5.7.0</id>
+    <properties>
+      <spark.version>1.6.0-cdh5.7.0</spark.version>
+      <py4j.version>0.9</py4j.version>
+      <akka.group>org.spark-project.akka</akka.group>
+      <akka.version>2.2.3-shaded-protobuf</akka.version>
+      <protobuf.version>2.5.0</protobuf.version>
+    </properties>
+    <dependencies>
+    </dependencies>
+  </profile>
