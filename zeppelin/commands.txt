@@ -24,3 +24,12 @@ docker run -it -P -v /Users/erikwenberg/prog/zeppelin/share:/opt/share \
     <dependencies>
     </dependencies>
   </profile>
+
+# Add this to the top level zeppelin POM OR try -Pvendor-repo:
+
+<repositories>
+  <repository>
+    <id>cloudera</id>
+    <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
+  </repository>
+ </repositories>
